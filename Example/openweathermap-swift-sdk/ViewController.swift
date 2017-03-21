@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import openweathermap_swift_sdk
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        APIClient.client.getForecast(cityName: "istanbul", countryCode: "tr", limit: 0) { (result, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+        }
+        // Do any additional setup after loading the view, typically efrom a nib.
     }
 
     override func didReceiveMemoryWarning() {

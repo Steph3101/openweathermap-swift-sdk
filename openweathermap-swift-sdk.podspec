@@ -1,4 +1,5 @@
 #
+#
 # Be sure to run `pod lib lint openweathermap-swift-sdk.podspec' to ensure this is a
 # valid spec before submitting.
 #
@@ -9,7 +10,7 @@
 Pod::Spec.new do |s|
   s.name             = 'openweathermap-swift-sdk'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of openweathermap-swift-sdk.'
+  s.summary          = 'Unofficial Objective C SDK for OpenWeatherMap.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,25 +19,31 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+	Unofficial Objective C SDK for OpenWeatherMap. It provides JSON model classes
+	and related REST API GET methods.
                        DESC
 
-  s.homepage         = 'https://github.com/git/openweathermap-swift-sdk'
+  s.homepage         = 'https://github.com/rocxteady/openweathermap-swift-sdk'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'git' => 'ulas.sancak@hotmail.com.tr' }
-  s.source           = { :git => 'https://github.com/git/openweathermap-swift-sdk.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { 'Ulaş Sancak' => 'ulas.sancak@hotmail.com.tr' }
+  s.source           = { :git => 'https://github.com/rocxteady/openweathermap-swift-sdk.git', :tag => s.version.to_s }
+  # s.social_media_url = 'https://twitter.com/rocxteady'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
-  s.source_files = 'openweathermap-swift-sdk/Classes/**/*'
+  s.source_files = 'openweathermap-swift-sdk/Classes/**/*.swift'
   
   # s.resource_bundles = {
   #   'openweathermap-swift-sdk' => ['openweathermap-swift-sdk/Assets/*.png']
   # }
+  
+  s.pod_target_xcconfig = {
+    'SWIFT_VERSION' => '3.0',
+  }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+  s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'Alamofire', '~> 4.4'
+  s.dependency 'ObjectMapper', '~> 2.2'
 end

@@ -2,10 +2,4 @@ use_frameworks!
 
 target 'openweathermap-swift-sdk_Example' do
   pod 'openweathermap-swift-sdk', :path => '../'
-
-  target 'openweathermap-swift-sdk_Tests' do
-    inherit! :search_paths
-
-    
-  end
 end

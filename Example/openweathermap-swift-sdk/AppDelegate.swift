@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import openweathermap_swift_sdk
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        Client.client(appID: "e5c852e18633dca4c0f01af483e957ee")
         return true
     }
 
