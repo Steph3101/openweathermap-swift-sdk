@@ -32,11 +32,17 @@ public class WeatherArrayResult: BaseResult {
      */
     var weatherDatas: [Weather]?
     
+    /**
+     Related city information model
+     */
+    var city: City?
+    
     // Mappable
     override public func mapping(map: Map) {
         super.mapping(map: map)
         cnt             <- map["cnt"]
         alternativeCnt  <- map["count"]
         weatherDatas    <- map["list"]
+        city            <- map["city"]
     }
 }
