@@ -13,7 +13,7 @@ public class Coordinates: Mappable {
     var latitude: Double = 0.0
     var longitude: Double = 0.0
     
-    init(latitude: Double, longitude: Double) {
+    public init(latitude: Double, longitude: Double) {
         self.latitude = latitude
         self.longitude = longitude
     }

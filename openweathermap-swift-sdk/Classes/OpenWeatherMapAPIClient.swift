@@ -561,7 +561,7 @@ public class OpenWeatherMapAPIClient: NSObject {
      @param block Response block
      */
     
-    private func getDailyForecast(ZIPCode: String, countryCode: String, limit: Int, block: @escaping WeatherDailyForecastResultBlock) {
+    public func getDailyForecast(ZIPCode: String, countryCode: String, limit: Int, block: @escaping WeatherDailyForecastResultBlock) {
         if ZIPCode.characters.count == 0 {
             do {
                 try createError(description: "ZIPCode cannot be empty.")
