@@ -23,7 +23,7 @@ private let APITypeDailyForecast: String = "forecast/daily"
 /**
  API client model fot HTTP requests
  */
-public class APIClient: NSObject {
+public class OpenWeatherMapAPIClient: NSObject {
     //Response blocks
     public typealias WeatherBlock = (_ weatherData: Weather?, _ error: Error?) -> Void
     public typealias WeatherArrayResultBlock = (_ result: WeatherArrayResult?, _ error: Error?) -> Void
@@ -36,7 +36,7 @@ public class APIClient: NSObject {
      @return APIClient instance
      */
     
-    public static let client = APIClient()
+    public static let client = OpenWeatherMapAPIClient()
     //Call current weather data for one location
     /**
      Get weather data by cityname. API responds with a list of results that match a searching word.
@@ -46,6 +46,16 @@ public class APIClient: NSObject {
      */
     
     public func getWeather(cityName: String, block: @escaping WeatherBlock) {
+        if cityName.characters.count == 0 {
+            do {
+                try createError(description: "cityName cannot be empty")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         get(URL: "\(BaseURL)/\(DataURI)/\(Version)/\(APITypeWeather)", parameters: ["q": cityName], block: {(_ response: String?, _ error: Error?) -> Void in
             var weatherData: Weather? = nil
             if error == nil {
@@ -63,6 +73,26 @@ public class APIClient: NSObject {
      */
     
     public func getWeather(cityName: String, countryCode: String, block: @escaping WeatherBlock) {
+        if cityName.characters.count == 0 {
+            do {
+                try createError(description: "cityName cannot be empty")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
+        if countryCode.characters.count == 0 {
+            do {
+                try createError(description: "countryCode cannot be empty")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         get(URL: "\(BaseURL)/\(DataURI)/\(Version)/\(APITypeWeather)", parameters: ["q": "\(cityName),\(countryCode)"], block: {(_ response: String?, _ error: Error?) -> Void in
             var weatherData: Weather? = nil
             if error == nil {
@@ -79,6 +109,16 @@ public class APIClient: NSObject {
      */
     
     public func getWeather(cityID: Int, block: @escaping WeatherBlock) {
+        if cityID == 0 {
+            do {
+                try createError(description: "cityID cannot be 0.")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         get(URL: "\(BaseURL)/\(DataURI)/\(Version)/\(APITypeWeather)", parameters: ["id": (cityID)], block: {(_ response: String?, _ error: Error?) -> Void in
             var weatherData: Weather? = nil
             if error == nil {
@@ -95,6 +135,16 @@ public class APIClient: NSObject {
      */
     
     public func getWeather(coordinates: Coordinates, block: @escaping WeatherBlock) {
+        if coordinates == nil {
+            do {
+                try createError(description: "coordinates cannot be nil.")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         get(URL: "\(BaseURL)/\(DataURI)/\(Version)/\(APITypeWeather)", parameters: ["lat": (coordinates.latitude), "lon": (coordinates.longitude)], block: {(_ response: String?, _ error: Error?) -> Void in
             var weatherData: Weather? = nil
             if error == nil {
@@ -110,6 +160,26 @@ public class APIClient: NSObject {
      @param block Response block
      */
     public func getWeather(ZIPCode: String, countryCode: String, block: @escaping WeatherBlock) {
+        if ZIPCode.characters.count == 0 {
+            do {
+                try createError(description: "ZIPCode cannot be empty.")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
+        if countryCode.characters.count == 0 {
+            do {
+                try createError(description: "countryCode cannot be empty.")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         get(URL: "\(BaseURL)/\(DataURI)/\(Version)/\(APITypeWeather)", parameters: ["zip": "\(ZIPCode),\(countryCode)"], block: {(_ response: String?, _ error: Error?) -> Void in
             var weatherData: Weather? = nil
             if error == nil {
@@ -127,6 +197,16 @@ public class APIClient: NSObject {
      */
     
     public func getWeather(cityIDs: [Int], limit: Int, block: @escaping WeatherArrayResultBlock) {
+        if cityIDs.count == 0 {
+            do {
+                try createError(description: "cityIDs cannot be empty.")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         var cityIDsString: String = (cityIDs as NSArray).componentsJoined(by: ",")
         var params: [String: Any] = [
             "id" : cityIDsString
@@ -150,6 +230,17 @@ public class APIClient: NSObject {
      */
     
     public func getWeather(zone: String, limit: Int, block: @escaping WeatherArrayResultBlock) {
+        let elements = zone.components(separatedBy: ",")
+        if elements.count != 5 {
+            do {
+                try createError(description: "zone format is incorrect. It must be like \"lon-left,lat-bottom,lon-right,lat-top,zoom\".")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         var params: [String: Any] = [
             "bbox" : zone
         ]
@@ -172,6 +263,16 @@ public class APIClient: NSObject {
      @param block Response block
      */
     public func getWeather(coordinates: Coordinates, countOfCity: Int, block: @escaping WeatherArrayResultBlock) {
+        if coordinates == nil {
+            do {
+                try createError(description: "coordinates cannot be nil.")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         get(URL: "\(BaseURL)/\(DataURI)/\(Version)/\(APITypeFind)", parameters: ["lat": (coordinates.latitude), "lon": (coordinates.longitude), "cnt": (countOfCity)], block: {(_ response: String?, _ error: Error?) -> Void in
             var result: WeatherArrayResult? = nil
             if error == nil {
@@ -191,6 +292,26 @@ public class APIClient: NSObject {
      */
     
     public func getForecast(cityName: String, countryCode: String, limit: Int, block: @escaping WeatherArrayResultBlock) {
+        if cityName.characters.count == 0 {
+            do {
+                try createError(description: "cityName cannot be empty")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
+        if countryCode.characters.count == 0 {
+            do {
+                try createError(description: "countryCode cannot be empty")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         var params: [String: Any] = [
             "q" : cityName
         ]
@@ -215,6 +336,16 @@ public class APIClient: NSObject {
      */
     
     public func getForecast(cityID: Int, limit: Int, block: @escaping WeatherArrayResultBlock) {
+        if cityID == 0 {
+            do {
+                try createError(description: "cityID cannot be 0.")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         var params: [String: Any] = [
             "id" : (cityID)
         ]
@@ -238,6 +369,16 @@ public class APIClient: NSObject {
      @param block Response block
      */
     public func getForecast(coordinates: Coordinates, limit: Int, block: @escaping WeatherArrayResultBlock) {
+        if coordinates == nil {
+            do {
+                try createError(description: "coordinates cannot be nil.")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         var params: [String: Any] = [
             "lat" : (coordinates.latitude),
             "lon" : (coordinates.longitude)
@@ -263,6 +404,26 @@ public class APIClient: NSObject {
      */
     
     public func getForecast(ZIPCode: String, countryCode: String, limit: Int, block: @escaping WeatherArrayResultBlock) {
+        if ZIPCode.characters.count == 0 {
+            do {
+                try createError(description: "ZIPCode cannot be empty.")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
+        if countryCode.characters.count == 0 {
+            do {
+                try createError(description: "countryCode cannot be empty.")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         var params: [String: Any] = [
             "zip" : "\(ZIPCode),\(countryCode)"
         ]
@@ -289,6 +450,26 @@ public class APIClient: NSObject {
      */
     
     public func getDailyForecast(cityName: String, countryCode: String, limit: Int, block: @escaping WeatherDailyForecastResultBlock) {
+        if cityName.characters.count == 0 {
+            do {
+                try createError(description: "cityName cannot be empty")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
+        if countryCode.characters.count == 0 {
+            do {
+                try createError(description: "countryCode cannot be empty")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         var params: [String: Any] = [
             "q" : cityName
         ]
@@ -313,6 +494,16 @@ public class APIClient: NSObject {
      */
     
     public func getDailyForecast(cityID: Int, limit: Int, block: @escaping WeatherDailyForecastResultBlock) {
+        if cityID == 0 {
+            do {
+                try createError(description: "cityID cannot be 0.")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         var params: [String: Any] = [
             "id" : (cityID)
         ]
@@ -336,6 +527,16 @@ public class APIClient: NSObject {
      @param block Response block
      */
     public func getDailyForecast(coordinates: Coordinates, limit: Int, block: @escaping WeatherDailyForecastResultBlock) {
+        if coordinates == nil {
+            do {
+                try createError(description: "coordinates cannot be nil.")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         var params: [String: Any] = [
             "lat" : (coordinates.latitude),
             "lon" : (coordinates.longitude)
@@ -361,6 +562,26 @@ public class APIClient: NSObject {
      */
     
     private func getDailyForecast(ZIPCode: String, countryCode: String, limit: Int, block: @escaping WeatherDailyForecastResultBlock) {
+        if ZIPCode.characters.count == 0 {
+            do {
+                try createError(description: "ZIPCode cannot be empty.")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
+        if countryCode.characters.count == 0 {
+            do {
+                try createError(description: "countryCode cannot be empty.")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error as Error {
+                block(nil, error)
+            }
+            return
+        }
         var params: [String: Any] = [
             "zip" : "\(ZIPCode),\(countryCode)"
         ]
@@ -379,7 +600,7 @@ public class APIClient: NSObject {
     
     private func get(URL: String, parameters: [String: Any]!, block: @escaping ClientResponseBlock) {
         var parameters: [String: Any] = parameters
-        parameters["appid"] = Client.client.appID
+        parameters["appid"] = OpenWeatherMapClient.client.appID
         var params = Params.defaultParams.toJSON()
         if params.count > 0 {
             for (k, v) in params {
@@ -389,5 +610,9 @@ public class APIClient: NSObject {
         Alamofire.request(URL, parameters: parameters).responseString { response in
             block(response.result.value, response.result.error)
         }
+    }
+    
+    private func createError(description: String) throws {
+        throw OpenWeatherMapAPIError.emptyParameter(description: description)
     }
 }

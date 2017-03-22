@@ -11,7 +11,7 @@ import UIKit
 /**
  OpenWeatherMap configuration class
  */
-public class Client: NSObject {
+public class OpenWeatherMapClient: NSObject {
 
     /**
      API key for OpenWeatherMap
@@ -23,7 +23,7 @@ public class Client: NSObject {
      @return Client instance
      */
     
-    static let client = Client()
+    static let client = OpenWeatherMapClient()
     /**
      Create Client with API key
      
@@ -31,10 +31,9 @@ public class Client: NSObject {
      @return Client instance
      */
     
-    public class func client(appID: String) -> Client {
-        let client = Client.client
+    public class func client(appID: String) {
+        let client = OpenWeatherMapClient.client
         client.appID = appID
-        return client
     }
     
 }
