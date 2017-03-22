@@ -13,7 +13,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        APIClient.client.getForecast(cityName: "istanbul", countryCode: "tr", limit: 0) { (result, error) in
+        OpenWeatherMapAPIClient.client.getWeather(cityName: "") { (weather, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+        }
+        OpenWeatherMapAPIClient.client.getForecast(cityName: "istanbul", countryCode: "tr", limit: 0) { (result, error) in
             if error != nil {
                 print(error!.localizedDescription)
             }
