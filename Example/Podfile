@@ -1,5 +1,5 @@
 use_frameworks!
 
-target 'openweathermap-swift-sdk_Example' do
+target 'OpenWeatherMapiOSExample' do
   pod 'openweathermap-swift-sdk', :path => '../'
 end

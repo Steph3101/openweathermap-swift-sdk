@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:openweathermap-swift-sdk.xcodeproj">
+      location = "self:OpenWeatherMapExample.xcodeproj">
    </FileRef>
 </Workspace>
