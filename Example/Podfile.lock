@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
-  openweathermap-swift-sdk: d89c71aaec2c2356c2d9b82c9e0efeb71f6b46a2
+  openweathermap-swift-sdk: 416001c872674cb45578409e24f1b939c6e90d11
 
 PODFILE CHECKSUM: c90782efcd210ecade5da8795c248c18d4726765
 
