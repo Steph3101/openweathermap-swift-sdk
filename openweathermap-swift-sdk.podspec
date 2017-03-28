@@ -10,7 +10,7 @@
 Pod::Spec.new do |s|
   s.name             = 'openweathermap-swift-sdk'
   s.version          = '0.1.0'
-  s.summary          = 'Unofficial Objective C SDK for OpenWeatherMap.'
+  s.summary          = 'Unofficial Swift SDK for OpenWeatherMap.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-	Unofficial Objective C SDK for OpenWeatherMap. It provides JSON model classes
+	Unofficial Swift SDK for OpenWeatherMap. It provides JSON model classes
 	and related REST API GET methods.
                        DESC
 
