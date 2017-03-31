@@ -25,7 +25,13 @@ public class WeatherInfo: Mappable {
     /**
      Weather icon id
      */
-    public var icon: String?
+    private var icon: String?
+    
+    public var iconURL: String {
+        get {
+            return "http://openweathermap.org/img/w/" + icon! + ".png"
+        }
+    }
     
     required public init?(map: Map) {
         
