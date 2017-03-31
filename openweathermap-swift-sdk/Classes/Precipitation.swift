@@ -8,16 +8,16 @@
 
 import ObjectMapper
 
-class Precipitation: Mappable {
+public class Precipitation: Mappable {
 
-    var volumeForLast3Hours: Int?
+    public var volumeForLast3Hours: Int?
     
-    required init?(map: Map) {
+    required public init?(map: Map) {
         
     }
     
     // Mappable
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         volumeForLast3Hours     <- map["3h"]
     }
     

@@ -8,23 +8,23 @@
 
 import ObjectMapper
 
-class Wind: Mappable {
+public class Wind: Mappable {
 
     /**
      Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour.
      */
-    var speed: Double?
+    public var speed: Double?
     /**
      Wind direction, degrees (meteorological)
      */
-    var direction: Int?
+    public var direction: Int?
     
-    required init?(map: Map) {
+    required public init?(map: Map) {
         
     }
     
     // Mappable
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         speed       <- map["speed"]
         direction   <- map["deg"]
     }

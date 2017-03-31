@@ -8,19 +8,19 @@
 
 import ObjectMapper
 
-class Clouds: Mappable {
+public class Clouds: Mappable {
     
     /**
      Cloudiness by percentage
      */
-    var all: Int?
+    public var all: Int?
 
-    required init?(map: Map) {
+    required public init?(map: Map) {
         
     }
     
     // Mappable
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         all     <- map["all"]
     }
     

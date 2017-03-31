@@ -15,15 +15,15 @@ public class DailyForecastResult: BaseResult {
     /**
      Returned number of lines
      */
-    var cnt: Int?
+    public var cnt: Int?
     /**
      Returned forecast array
      */
-    var weatherDatas: [DailyForecastWeather]?
+    public var weatherDatas: [DailyForecastWeather]?
     /**
      Related city information model
      */
-    var city: City?
+    public var city: City?
     
     // Mappable
     override public func mapping(map: Map) {

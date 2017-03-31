@@ -15,49 +15,49 @@ public class Weather: Mappable {
     /**
      Coordinates of the related ciyu
      */
-    var coordinates: Coordinates?
+    public var coordinates: Coordinates?
     /**
      Weather condition codes and infos
      */
-    var weatherInfos: [WeatherInfo]?
-    var base: String?
+    public var weatherInfos: [WeatherInfo]?
+    public var base: String?
     /**
      Main weather parameters
      */
-    var main: Main?
+    public var main: Main?
     /**
      Visibility, meter
      */
-    var visibility: Int?
+    public var visibility: Int?
     /**
      Wind model. More info: Wind
      */
-    var wind: Wind?
+    public var wind: Wind?
     /**
      Clouds model. Cloudiness, %. More info: Clouds
      */
-    var clouds: Clouds?
+    public var clouds: Clouds?
     /**
      Rain model. Rain volume for the last 3 hours. More info: Rain.
      */
-    var rain: Precipitation?
+    public var rain: Precipitation?
     /**
      Snow model. Snow volume for the last 3 hours. More info: Snow.
      */
-    var snow: Precipitation?
+    public var snow: Precipitation?
     /**
      Time of data calculation, unix, UTC
      */
-    var dataTime: Double?
-    var sys: Sys?
+    public var dataTime: Double?
+    public var sys: Sys?
     /**
      City ID
      */
-    var cityID: Int?
+    public var cityID: Int?
     /**
      City Name
      */
-    var cityName: String?
+    public var cityName: String?
     
     required public init?(map: Map) {
         

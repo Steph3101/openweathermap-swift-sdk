@@ -11,34 +11,34 @@ import ObjectMapper
 /**
  City model
  */
-class City: Mappable {
+public class City: Mappable {
     /**
      City ID
      */
-    var id: Int?
+    public var id: Int?
     /**
      City name
      */
-    var name: String?
+    public var name: String?
     /**
      City coordinates
      */
-    var coordinates: Coordinates?
+    public var coordinates: Coordinates?
     /**
      The country of the city
      */
-    var country: String?
+    public var country: String?
     /**
      The population of the city
      */
-    var population: Int?
+    public var population: Int?
     
-    required init?(map: Map) {
+    required public init?(map: Map) {
         
     }
     
     // Mappable
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         id              <- map["id"]
         name            <- map["name"]
         coordinates     <- map["coord"]

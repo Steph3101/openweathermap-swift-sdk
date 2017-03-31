@@ -8,30 +8,30 @@
 
 import ObjectMapper
 
-class Sys: Mappable {
+public class Sys: Mappable {
 
-    var type: Int?
-    var id: Int?
+    public var type: Int?
+    public var id: Int?
     /**
      Country code (GB, JP etc.)
      */
-    var countryCode: String?
-    var pod: String?
+    public var countryCode: String?
+    public var pod: String?
     /**
      Sunrise time, unix, UTC
      */
-    var sunriseTime = TimeInterval()
+    public var sunriseTime = TimeInterval()
     /**
      Sunset time, unix, UTC
      */
-    var sunsetTime = TimeInterval()
+    public var sunsetTime = TimeInterval()
     
-    required init?(map: Map) {
+    required public init?(map: Map) {
         
     }
     
     // Mappable
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         type            <- map["type"]
         id           <- map["id"]
         countryCode     <- map["country"]

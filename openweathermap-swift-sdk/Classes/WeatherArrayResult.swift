@@ -16,7 +16,7 @@ public class WeatherArrayResult: BaseResult {
     /**
      The returned number of lines API
      */
-    var cnt: Int? {
+    public var cnt: Int? {
         get {
             if privateCnt == nil {
                 return alternativeCnt
@@ -30,12 +30,12 @@ public class WeatherArrayResult: BaseResult {
     /**
      The array of Weather data
      */
-    var weatherDatas: [Weather]?
+    public var weatherDatas: [Weather]?
     
     /**
      Related city information model
      */
-    var city: City?
+    public var city: City?
     
     // Mappable
     override public func mapping(map: Map) {

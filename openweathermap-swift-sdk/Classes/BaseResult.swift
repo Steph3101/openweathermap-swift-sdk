@@ -18,7 +18,7 @@ public class BaseResult: Mappable {
     /**
      Status code of the response
      */
-    var code: String {
+    public var code: String {
         get {
             if privateCode == nil {
                 return "200"
@@ -32,11 +32,11 @@ public class BaseResult: Mappable {
     /**
      Status message of the response
      */
-    var message: String?
+    public var message: String?
     /**
      Speed of the data calculation
      */
-    var calcTime: Double = 0.0
+    public var calcTime: Double = 0.0
     
     required public init?(map: Map) {
         

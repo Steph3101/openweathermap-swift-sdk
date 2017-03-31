@@ -8,59 +8,59 @@
 
 import ObjectMapper
 
-class DailyForecastWeather: Mappable {
+public class DailyForecastWeather: Mappable {
     
     /**
      Weather condition codes and infos
      */
-    var weatherInfos: [WeatherInfo]?
+    public var weatherInfos: [WeatherInfo]?
     /**
      Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour.
      */
-    var windSpeed: Double?
+    public var windSpeed: Double?
     /**
      Cloudiness by percentage
      */
-    var clouds: Int?
+    public var clouds: Int?
     /**
      Rain volume
      */
-    var rain: Int?
+    public var rain: Int?
     /**
      Snow volume
      */
-    var snow: Int?
+    public var snow: Int?
     /**
      Time of data calculation, unix, UTC
      */
-    var dataTime: Double?
+    public var dataTime: Double?
     /**
      String time of data forecasted
      */
-    var dataTimeText: String?
+    public var dataTimeText: String?
     /**
      Temperature model. (Min, max etc.)
      */
-    var temperature: Temperature?
+    public var temperature: Temperature?
     /**
      Atmospheric pressure on the sea level, hPa
      */
-    var pressure: Double?
+    public var pressure: Double?
     /**
      Humidity by percentage
      */
-    var humidity: Int?
+    public var humidity: Int?
     /**
      Wind direction, degrees (meteorological)
      */
-    var windDirection: Int?
+    public var windDirection: Int?
     
-    required init?(map: Map) {
+    required public init?(map: Map) {
         
     }
     
     // Mappable
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         weatherInfos        <- map["weather"]
         windSpeed           <- map["speed"]
         clouds              <- map["clouds"]
