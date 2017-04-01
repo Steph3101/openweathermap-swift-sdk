@@ -25,7 +25,7 @@ public class WeatherInfo: Mappable {
     /**
      Weather icon id
      */
-    private var icon: String?
+    public var icon: String?
     
     public var iconURL: String {
         get {
