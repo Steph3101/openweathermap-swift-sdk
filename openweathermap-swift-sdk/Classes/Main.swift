@@ -31,7 +31,7 @@ public class Main: Mappable {
     /**
      Humidity, %
      */
-    public var humidity: Double?
+    public var humidity: Int?
     /**
      Minimum temperature at the moment. This is deviation from current temp that is possible for large cities and megalopolises geographically expanded (use these parameter optionally). Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
      */
