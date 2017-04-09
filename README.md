@@ -20,6 +20,13 @@ it, simply add the following line to your Podfile:
 pod "openweathermap-swift-sdk"
 ```
 ## Usage
+###### API Key
+```
+import openweathermap_swift_sdk
+
+OpenWeatherMapClient.client(appID: "app_id")
+```
+
 ###### Getting Current Conditions
 ```
 import openweathermap_swift_sdk
