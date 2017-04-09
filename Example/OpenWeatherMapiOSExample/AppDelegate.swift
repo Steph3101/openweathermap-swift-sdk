@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  OpenWeatherMapiOSExample
 //
-//  Created by Ulaş Sancak on 24/03/2017.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  Created by Ulaş Sancak on 10/04/2017.
+//  Copyright © 2017 Ulaş Sancak. All rights reserved.
 //
 
 import UIKit

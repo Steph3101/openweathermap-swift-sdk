@@ -11,7 +11,7 @@ import ObjectMapper
 /**
  Weather data model for the current weather API
  */
-public class Weather: Mappable {
+public class Weather: BaseResult {
     /**
      Coordinates of the related ciyu
      */
@@ -58,13 +58,10 @@ public class Weather: Mappable {
      City Name
      */
     public var cityName: String?
-    
-    required public init?(map: Map) {
-        
-    }
 
     // Mappable
-    public func mapping(map: Map) {
+    public override func mapping(map: Map) {
+        super.mapping(map: map)
         coordinates         <- map["coord"]
         weatherInfos        <- map["weather"]
         base                <- map["base"]
