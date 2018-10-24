@@ -45,5 +45,5 @@ Pod::Spec.new do |s|
   #s.public_header_files = 'openweathermap-swift-sdk/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'Alamofire', '~> 4.4'
-  s.dependency 'ObjectMapper', '~> 2.2'
+  s.dependency 'ObjectMapper', '~> 3.3'
 end
