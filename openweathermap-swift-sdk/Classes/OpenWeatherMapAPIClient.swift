@@ -19,6 +19,7 @@ private let APITypeFind: String = "find"
 private let APITypeGroup: String = "group"
 private let APITypeForecast: String = "forecast"
 private let APITypeDailyForecast: String = "forecast/daily"
+private let APITypeForecastUV: String = "uvi/forecast"
 
 /**
  API client model fot HTTP requests
@@ -28,6 +29,8 @@ public class OpenWeatherMapAPIClient: NSObject {
     public typealias WeatherBlock = (_ weatherData: Weather?, _ error: Error?) -> Void
     public typealias WeatherArrayResultBlock = (_ result: WeatherArrayResult?, _ error: Error?) -> Void
     public typealias WeatherDailyForecastResultBlock = (_ result: DailyForecastResult?, _ error: Error?) -> Void
+    public typealias WeatherDailyForecastUVResultBlock = (_ result: [DailyForecastUVWeather]?, _ error: Error?) -> Void
+
     //Response block of HTTP requests
     private typealias ClientResponseBlock = (_ response: String?, _ error: Error?) -> Void
     /**
@@ -593,6 +596,41 @@ public class OpenWeatherMapAPIClient: NSObject {
             var result: DailyForecastResult? = nil
             if error == nil {
                 result = Mapper<DailyForecastResult>().map(JSONString: response!)
+            }
+            block(result, error)
+        })
+    }
+    /**
+     Get UV forecast data by coordinates. API responds with exact result
+
+     @param coordinates Coordinate model of the location of your interest
+     @param limit Number of cities that should be returned. 0 for no limit.
+     @param block Response block
+     */
+    public func getDailyForecastUV(coordinates: Coordinates?, limit: Int, block: @escaping WeatherDailyForecastUVResultBlock) {
+        if coordinates == nil {
+            do {
+                try createError(description: "coordinates cannot be nil.")
+            } catch let error as OpenWeatherMapAPIError {
+                block(nil, error)
+            } catch let error {
+                block(nil, error)
+            }
+            return
+        }
+        var params: [String: Any] = [
+            "lat" : (coordinates!.latitude),
+            "lon" : (coordinates!.longitude)
+        ]
+
+        if limit > 0 {
+            params["cnt"] = (limit)
+        }
+        get(URL: "\(BaseURL)/\(DataURI)/\(Version)/\(APITypeForecastUV)", parameters: params, block: {(_ response: String?, _ error: Error?) -> Void in
+            print("test")
+            var result: [DailyForecastUVWeather]? = nil
+            if error == nil {
+                result = Mapper<DailyForecastUVWeather>().mapArray(JSONString: response!)
             }
             block(result, error)
         })

@@ -34,6 +34,11 @@ class ViewController: UIViewController {
                 //Data received
             }
         }
+        OpenWeatherMapAPIClient.client.getDailyForecastUV(coordinates: Coordinates(latitude: 37.75, longitude: 122.37), limit: 0) { (result, error) in
+            if error == nil {
+                //Data received
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
